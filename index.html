@@ -155,6 +155,74 @@
             transform: translateY(-2px);
         }
 
+        /* Dropdown Menu */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+        }
+
+        .nav-dropdown-toggle svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            transition: transform 0.3s;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            min-width: 220px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.75rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--transition-smooth);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 0;
+            transition: all 0.2s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--text-primary);
+            padding-left: 1.5rem;
+        }
+
+        .nav-dropdown-menu a::after {
+            display: none;
+        }
+
         /* Mobile Menu */
         .nav-toggle {
             display: none;
@@ -708,6 +776,54 @@
             .portfolio-grid {
                 column-count: 1;
             }
+        }
+
+        /* Portfolio Filter Buttons */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .portfolio-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .portfolio-filter-btn:hover {
+            background: rgba(0, 245, 255, 0.1);
+            border-color: rgba(0, 245, 255, 0.3);
+            color: var(--text-primary);
+        }
+
+        .portfolio-filter-btn.active {
+            background: var(--gradient-neon);
+            border-color: transparent;
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+
+        .portfolio-filter-btn.active:hover {
+            box-shadow: var(--glow-cyan);
+        }
+
+        /* Portfolio item animation for filtering */
+        .portfolio-item.hidden {
+            display: none;
         }
 
         /* Lightbox */
@@ -1551,7 +1667,20 @@
             </a>
             
             <ul class="nav-links" id="navLinks">
-                <li><a href="#services">Services</a></li>
+                <li class="nav-dropdown">
+                    <a href="#services" class="nav-dropdown-toggle">
+                        Services
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="#services">LED Sign Boards</a>
+                        <a href="#services">Acrylic Sign Boards</a>
+                        <a href="#services">Glow Sign Boards</a>
+                        <a href="#services">Wall Graphics</a>
+                        <a href="#services">Vehicle Branding</a>
+                        <a href="#services">PVC & Stainless Steel</a>
+                    </div>
+                </li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -1721,6 +1850,17 @@
             <div class="section-tag">Our Work</div>
             <h2 class="section-title">SIGNS THAT SPEAK LOUDER</h2>
             <p class="section-subtitle">Every project is a story of transformation. See how we've helped businesses shine.</p>
+        </div>
+        
+        <!-- Portfolio Filter Buttons -->
+        <div class="portfolio-filters animate-on-scroll">
+            <button class="portfolio-filter-btn active" data-filter="all">All</button>
+            <button class="portfolio-filter-btn" data-filter="led">LED</button>
+            <button class="portfolio-filter-btn" data-filter="acrylic">Acrylic</button>
+            <button class="portfolio-filter-btn" data-filter="glow">Glow</button>
+            <button class="portfolio-filter-btn" data-filter="wall">Wall</button>
+            <button class="portfolio-filter-btn" data-filter="vehicle">Vehicle</button>
+            <button class="portfolio-filter-btn" data-filter="pvc">PVC</button>
         </div>
         
         <div class="portfolio-grid" id="portfolioGrid">
@@ -1979,35 +2119,36 @@
         // Portfolio Images Data
         // ============================================
         const portfolioImages = [
-            { src: 'data/led/1.webp', tag: 'LED Sign' },
-            { src: 'data/acrylic/2.webp', tag: 'Acrylic' },
-            { src: 'data/glow/1.webp', tag: 'Glow Sign' },
-            { src: 'data/led/2.webp', tag: 'LED Board' },
-            { src: 'data/wall/2.webp', tag: 'Wall Graphics' },
-            { src: 'data/vehicle/1.webp', tag: 'Vehicle Branding' },
-            { src: 'data/led/3.webp', tag: '3D Letters' },
-            { src: 'data/square/brass.webp', tag: 'ACP Sign' },
-            { src: 'data/led/4.webp', tag: 'LED Board' },
-            { src: 'data/glow/2.webp', tag: 'Glow Sign' },
-            { src: 'data/acrylic/3.webp', tag: 'Acrylic' },
-            { src: 'data/wall/3.webp', tag: 'Wall Graphics' },
-            { src: 'data/led/5.webp', tag: 'LED Sign' },
-            { src: 'data/vehicle/2.webp', tag: 'Vehicle' },
-            { src: 'data/led/1.1.webp', tag: '3D Letters' },
-            { src: 'data/glow/3.webp', tag: 'Glow Sign' },
-            { src: 'data/square/ledsign.webp', tag: 'LED Sign' },
-            { src: 'data/led/2.1.webp', tag: 'LED Board' },
-            { src: 'data/acrylic/1.webp', tag: 'Acrylic' },
-            { src: 'data/square/bus.webp', tag: 'Vehicle' },
+            { src: 'data/led/1.webp', tag: 'LED Sign', category: 'led' },
+            { src: 'data/acrylic/2.webp', tag: 'Acrylic', category: 'acrylic' },
+            { src: 'data/glow/1.webp', tag: 'Glow Sign', category: 'glow' },
+            { src: 'data/led/2.webp', tag: 'LED Board', category: 'led' },
+            { src: 'data/wall/2.webp', tag: 'Wall Graphics', category: 'wall' },
+            { src: 'data/vehicle/1.webp', tag: 'Vehicle Branding', category: 'vehicle' },
+            { src: 'data/led/3.webp', tag: '3D Letters', category: 'led' },
+            { src: 'data/square/brass.webp', tag: 'PVC Sign', category: 'pvc' },
+            { src: 'data/led/4.webp', tag: 'LED Board', category: 'led' },
+            { src: 'data/glow/2.webp', tag: 'Glow Sign', category: 'glow' },
+            { src: 'data/acrylic/3.webp', tag: 'Acrylic', category: 'acrylic' },
+            { src: 'data/wall/3.webp', tag: 'Wall Graphics', category: 'wall' },
+            { src: 'data/led/5.webp', tag: 'LED Sign', category: 'led' },
+            { src: 'data/vehicle/2.webp', tag: 'Vehicle', category: 'vehicle' },
+            { src: 'data/led/1.1.webp', tag: '3D Letters', category: 'led' },
+            { src: 'data/glow/3.webp', tag: 'Glow Sign', category: 'glow' },
+            { src: 'data/square/ledsign.webp', tag: 'LED Sign', category: 'led' },
+            { src: 'data/led/2.1.webp', tag: 'LED Board', category: 'led' },
+            { src: 'data/acrylic/1.webp', tag: 'Acrylic', category: 'acrylic' },
+            { src: 'data/square/bus.webp', tag: 'Vehicle', category: 'vehicle' },
         ];
 
         let currentLightboxIndex = 0;
+        let currentFilter = 'all';
 
         // Populate portfolio grid
         function populatePortfolio() {
             const grid = document.getElementById('portfolioGrid');
             grid.innerHTML = portfolioImages.map((img, index) => `
-                <div class="portfolio-item" onclick="openLightbox(${index})">
+                <div class="portfolio-item" data-category="${img.category}" onclick="openLightbox(${index})">
                     <img src="${img.src}" alt="${img.tag}" loading="lazy">
                     <div class="portfolio-item-overlay">
                         <span class="portfolio-item-tag">${img.tag}</span>
@@ -2015,6 +2156,34 @@
                 </div>
             `).join('');
         }
+
+        // Filter portfolio items
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            
+            items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                if (category === 'all' || itemCategory === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Filter button click handlers
+        document.querySelectorAll('.portfolio-filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                document.querySelectorAll('.portfolio-filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter items
+                const filter = this.getAttribute('data-filter');
+                currentFilter = filter;
+                filterPortfolio(filter);
+            });
+        });
 
         // ============================================
         // Lightbox Functions
