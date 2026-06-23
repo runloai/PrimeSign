@@ -374,35 +374,12 @@
 
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3.5rem, 11vw, 7rem);
-            line-height: 1.05;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            letter-spacing: 2px;
-        }
-
-        .hero-title .line1 {
-            display: block;
+            letter-spacing: 3px;
             color: #ffffff;
-            font-size: 0.65em;
-            letter-spacing: 4px;
-            margin-bottom: 0.1em;
-        }
-
-        .hero-title .line2 {
-            display: block;
-            background: linear-gradient(90deg, #00f5ff, #ff00aa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1em;
-        }
-
-        .hero-title .line3 {
-            display: block;
-            color: #00f5ff;
-            font-size: 0.65em;
-            letter-spacing: 4px;
-            margin-top: 0.1em;
+            text-align: center;
         }
 
         .hero-description {
@@ -459,57 +436,7 @@
         .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .hero-stat-item {
-            text-align: center;
-        }
-
-        .hero-stat-item strong {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #00f5ff;
-            font-family: 'Bebas Neue', sans-serif;
-        }
-
-        .hero-stat-item span {
-            font-size: 0.85rem;
-            color: #606070;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-            font-size: 0.9em;
-            letter-spacing: 0.05em;
-            margin-top: 0.05em;
-            text-shadow: var(--glow-cyan);
-        }
-
-        .hero-description {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            line-height: 1.7;
-            text-align: center;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 3rem;
-        }
-
-        .hero-stats {
-            display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.5rem;
             flex-wrap: wrap;
             font-size: 0.95rem;
@@ -525,6 +452,13 @@
         .hero-stat-item strong {
             color: var(--accent-cyan);
             font-weight: 600;
+        }
+
+        .hero-stat-item span {
+            font-size: 0.85rem;
+            color: #606070;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .hero-stat-divider {
@@ -1854,9 +1788,8 @@
             </div>
             
             <h1 class="hero-title">
-                <span class="line1">WE DON'T JUST</span>
-                <span class="line2">MAKE SIGNS.</span>
-                <span class="line3">WE LIGHT UP BRANDS.</span>
+                WE DON'T JUST MAKE SIGNS.<br>
+                WE LIGHT UP BRANDS.
             </h1>
             
             <p class="hero-description">
