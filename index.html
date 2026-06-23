@@ -322,16 +322,21 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            text-align: center;
-            padding: 120px 5% 80px;
+            text-align: left;
+            padding: 128px 5%;
             position: relative;
             overflow: hidden;
             background: 
                 radial-gradient(ellipse at 50% 0%, rgba(0, 245, 255, 0.12) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 80%, rgba(255, 0, 170, 0.08) 0%, transparent 40%),
                 var(--bg-primary);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
         }
 
         .hero::before {
@@ -502,6 +507,11 @@
             .hero {
                 padding: 100px 5% 50px;
                 text-align: center;
+                align-items: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
             }
 
             .hero-title {
